@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Трекер Мази">
+    <meta name="theme-color" content="#34C759">
+    <title>Трекер Мази</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>💊 Трекер Мази</h1>
+        </header>
+
+        <main>
+            <!-- Статистика -->
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-icon">🔥</span>
+                        <span class="stat-title">Текущая серия</span>
+                    </div>
+                    <div class="stat-value" id="currentStreak">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-icon">⭐</span>
+                        <span class="stat-title">Лучшая серия</span>
+                    </div>
+                    <div class="stat-value" id="bestStreak">0</div>
+                </div>
+
+                <div class="stat-card full-width">
+                    <div class="stat-header">
+                        <span class="stat-icon">📅</span>
+                        <span class="stat-title">Всего дней</span>
+                    </div>
+                    <div class="stat-value" id="totalDays">0</div>
+                </div>
+            </div>
+
+            <!-- Быстрая отметка сегодня -->
+            <button class="today-button" id="todayButton">
+                <span class="check-icon" id="todayIcon">○</span>
+                <span class="today-text">
+                    <span id="todayStatus">Отметить сегодня</span>
+                    <span class="today-date" id="todayDate"></span>
+                </span>
+            </button>
+
+            <!-- Календарь -->
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button class="nav-button" id="prevMonth">‹</button>
+                    <h2 id="currentMonth"></h2>
+                    <button class="nav-button" id="nextMonth">›</button>
+                </div>
+
+                <div class="weekdays">
+                    <div>Пн</div>
+                    <div>Вт</div>
+                    <div>Ср</div>
+                    <div>Чт</div>
+                    <div>Пт</div>
+                    <div>Сб</div>
+                    <div>Вс</div>
+                </div>
+
+                <div class="calendar-grid" id="calendarGrid"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

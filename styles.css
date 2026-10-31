@@ -1,0 +1,267 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-green: #34C759;
+    --primary-blue: #007AFF;
+    --background: #F2F2F7;
+    --card-background: #FFFFFF;
+    --text-primary: #000000;
+    --text-secondary: #8E8E93;
+    --border-color: #E5E5EA;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #000000;
+        --card-background: #1C1C1E;
+        --text-primary: #FFFFFF;
+        --text-secondary: #8E8E93;
+        --border-color: #38383A;
+        --shadow: rgba(0, 0, 0, 0.3);
+    }
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--background);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 100vh;
+    padding-bottom: 20px;
+}
+
+#app {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+header {
+    background-color: var(--card-background);
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header h1 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+main {
+    padding: 20px;
+}
+
+/* Статистика */
+.stats-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background-color: var(--card-background);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.stat-card.full-width {
+    grid-column: 1 / -1;
+}
+
+.stat-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.stat-icon {
+    font-size: 20px;
+}
+
+.stat-title {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.stat-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Кнопка сегодня */
+.today-button {
+    width: 100%;
+    background-color: var(--card-background);
+    border: none;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px var(--shadow);
+    margin-bottom: 20px;
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.today-button:active {
+    transform: scale(0.98);
+    box-shadow: 0 1px 4px var(--shadow);
+}
+
+.check-icon {
+    font-size: 32px;
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+
+.check-icon.checked {
+    color: var(--primary-green);
+}
+
+.today-text {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#todayStatus {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.today-date {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* Календарь */
+.calendar-container {
+    background-color: var(--card-background);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: var(--primary-blue);
+    cursor: pointer;
+    padding: 8px 12px;
+    transition: opacity 0.2s;
+}
+
+.nav-button:active {
+    opacity: 0.5;
+}
+
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.weekdays div {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 8px 0;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+.day-cell {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: rgba(142, 142, 147, 0.1);
+    color: var(--text-primary);
+}
+
+.day-cell:active {
+    transform: scale(0.9);
+}
+
+.day-cell.empty {
+    background: none;
+    cursor: default;
+}
+
+.day-cell.today {
+    background-color: rgba(0, 122, 255, 0.2);
+    color: var(--primary-blue);
+    font-weight: 700;
+}
+
+.day-cell.marked {
+    background-color: var(--primary-green);
+    color: white;
+    font-weight: 600;
+}
+
+.day-cell.future {
+    background: none;
+    color: rgba(142, 142, 147, 0.3);
+    cursor: default;
+}
+
+/* Анимации */
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.pop {
+    animation: pop 0.3s ease;
+}
+
+/* iOS Safari fixes */
+@supports (-webkit-touch-callout: none) {
+    body {
+        min-height: -webkit-fill-available;
+    }
+}
